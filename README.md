@@ -98,7 +98,7 @@ netplan-ip-configurator
 Clone the repository:
 
 ```
-git clone https://github.com/YOUR_USERNAME/netplan-ip-configurator.git
+git clone https://github.com/gustavoohrodrigues/netplan-ip-configurator.git
 ```
 
 Enter the project directory:
