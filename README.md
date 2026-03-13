@@ -1,76 +1,78 @@
 # Netplan Static IP Configurator
 
-Script Bash para configurar **endereços IP estáticos automaticamente em sistemas Linux que utilizam Netplan**, como Ubuntu Server.
+A Bash script to automatically configure **static IP addresses on Linux systems using Netplan**, such as Ubuntu Server.
 
-O script facilita a criação do arquivo de configuração YAML do Netplan, aplica a configuração de rede automaticamente e permite configurar DNS opcionalmente.
+This script simplifies the process of generating the Netplan YAML configuration file, applying the network configuration, and optionally configuring DNS servers.
 
 ---
 
-# Autor
+# Author
 
-**Gustavo Rodrigues**
+**Gustavo Henrique Rodrigues**
 SysAdmin - NOC Engineer
 
----
-
-# Descrição
-
-Este projeto fornece um script Bash simples e seguro para automatizar a configuração de rede em servidores Linux que utilizam **Netplan**.
-
-Ele foi desenvolvido para facilitar a configuração de:
-
-* endereço IP estático
-* máscara de rede (CIDR)
-* gateway padrão
-* servidores DNS
-* aplicação automática da configuração
-
-O script também cria **backup automático da configuração anterior do Netplan**, evitando perda de configuração em caso de erro.
+[LinkedIn](https://www.linkedin.com/in/gustavo-henrique-rodrigues-3070a5260)
 
 ---
 
-# Funcionalidades
+# Description
 
-* Listagem de interfaces de rede disponíveis
-* Configuração de IP estático
-* Configuração de CIDR
-* Configuração de gateway padrão
-* Configuração opcional de DNS
-* Backup automático do arquivo Netplan existente
-* Validação básica de IP
-* Geração automática do arquivo YAML
-* Aplicação automática da configuração
-* Reinício automático do serviço de rede
+This project provides a simple and safe Bash script to automate network configuration on Linux servers that use **Netplan**.
+
+It was designed to simplify the configuration of:
+
+* static IP address
+* network mask (CIDR)
+* default gateway
+* DNS servers
+* automatic configuration deployment
+
+The script also creates an **automatic backup of the previous Netplan configuration**, preventing configuration loss in case of mistakes.
 
 ---
 
-# Compatibilidade
+# Features
 
-Distribuições Linux com suporte ao **Netplan**:
+* Network interface discovery
+* Static IP configuration
+* CIDR configuration
+* Default gateway configuration
+* Optional DNS configuration
+* Automatic backup of existing Netplan configuration
+* Basic IP validation
+* Automatic YAML file generation
+* Automatic configuration application
+* Automatic restart of network services
+
+---
+
+# Compatibility
+
+Linux distributions that support **Netplan**, including:
 
 * Ubuntu Server 18.04+
 * Ubuntu Server 20.04
 * Ubuntu Server 22.04
 * Ubuntu Server 24.04
-* Sistemas derivados que utilizem Netplan
+* Netplan-based distributions
 
 ---
 
-# Requisitos
+# Requirements
 
-Pacotes necessários no sistema:
+Required packages:
 
 * netplan.io
 * iproute2
 * systemd-networkd
 
-Para verificar se o Netplan está instalado:
+Check Netplan installation:
 
 ```
 netplan --version
 ```
 
-Caso necessário instalar:
+Install if necessary:
 
 ```
 sudo apt update
@@ -79,7 +81,7 @@ sudo apt install netplan.io
 
 ---
 
-# Estrutura do Projeto
+# Project Structure
 
 ```
 netplan-ip-configurator
@@ -91,21 +93,21 @@ netplan-ip-configurator
 
 ---
 
-# Instalação
+# Installation
 
-Clone o repositório:
+Clone the repository:
 
 ```
-git clone https://github.com/SEU_USUARIO/netplan-ip-configurator.git
+git clone https://github.com/YOUR_USERNAME/netplan-ip-configurator.git
 ```
 
-Entre na pasta do projeto:
+Enter the project directory:
 
 ```
 cd netplan-ip-configurator
 ```
 
-Dê permissão de execução ao script:
+Make the script executable:
 
 ```
 chmod +x config_network.sh
@@ -113,9 +115,9 @@ chmod +x config_network.sh
 
 ---
 
-# Execução
+# Usage
 
-Execute o script como **root** ou utilizando **sudo**:
+Run the script as **root** or using **sudo**:
 
 ```
 sudo ./config_network.sh
@@ -123,49 +125,49 @@ sudo ./config_network.sh
 
 ---
 
-# Fluxo de execução
+# Execution Flow
 
-Durante a execução o script solicitará as seguintes informações:
+During execution the script will ask for the following information:
 
-1. Se deseja listar interfaces de rede disponíveis
-2. Interface de rede que será configurada
-3. Endereço IP estático
-4. CIDR da rede
-5. Gateway padrão
-6. Configuração opcional de DNS
+1. Whether to list available network interfaces
+2. The network interface to configure
+3. Static IP address
+4. Network CIDR
+5. Default gateway
+6. Optional DNS configuration
 
 ---
 
-# Exemplo de execução
+# Example Execution
 
 ```
-CONFIGURADOR DE IP FIXO - NETPLAN
+STATIC IP CONFIGURATOR - NETPLAN
 
-Deseja listar interfaces de rede disponíveis? (s/n): s
+Do you want to list available network interfaces? (y/n): y
 
-Interfaces disponíveis:
+Available interfaces:
 ens33
 ens160
 
-Informe a interface de rede (ex: ens33): ens33
-Informe o IP fixo (ex: 10.10.10.50): 10.10.10.50
-Informe o CIDR (ex: /24): /24
-Informe o gateway (ex: 10.10.10.1): 10.10.10.1
-Deseja configurar DNS? (s/n): s
-Digite os servidores DNS separados por espaço: 8.8.8.8 1.1.1.1
+Enter the network interface (example: ens33): ens33
+Enter the static IP (example: 10.10.10.50): 10.10.10.50
+Enter the CIDR (example: /24): /24
+Enter the gateway (example: 10.10.10.1): 10.10.10.1
+Configure DNS? (y/n): y
+Enter DNS servers separated by space: 8.8.8.8 1.1.1.1
 ```
 
 ---
 
-# Arquivo de configuração gerado
+# Generated Configuration File
 
-O script cria ou sobrescreve o arquivo:
+The script creates or overwrites the file:
 
 ```
 /etc/netplan/01-config-network.yaml
 ```
 
-Exemplo de configuração gerada:
+Example configuration:
 
 ```yaml
 network:
@@ -188,27 +190,27 @@ network:
 
 ---
 
-# Backup automático
+# Automatic Backup
 
-Antes de alterar a configuração atual, o script cria automaticamente um backup:
+Before modifying the current configuration, the script automatically creates a backup:
 
 ```
-/etc/netplan/backup_DATA_HORA.yaml
+/etc/netplan/backup_DATE_TIME.yaml
 ```
 
-Exemplo:
+Example:
 
 ```
 /etc/netplan/backup_2026-03-13_104522.yaml
 ```
 
-Isso permite restaurar facilmente uma configuração anterior.
+This allows easy restoration of a previous configuration.
 
 ---
 
-# Aplicação da configuração
+# Applying Configuration
 
-Após gerar o arquivo YAML o script executa automaticamente:
+After generating the YAML file, the script automatically executes:
 
 ```
 netplan generate
@@ -216,44 +218,35 @@ netplan apply
 systemctl restart systemd-networkd
 ```
 
-Também remove IPs antigos da interface para evitar conflitos.
+It also flushes existing IP addresses on the interface to prevent conflicts.
 
 ---
 
-# Avisos importantes
+# Important Warnings
 
-⚠ Alterações de rede podem interromper conexões SSH caso configuradas incorretamente.
+⚠ Network changes may interrupt SSH connections if configured incorrectly.
 
-Recomenda-se:
+Recommended practices:
 
-* testar em ambiente local
-* validar IP, gateway e interface antes de aplicar
-* ter acesso ao console do servidor
-
----
-
-# Melhorias futuras
-
-Possíveis melhorias para o projeto:
-
-* suporte a múltiplos IPs
-* suporte a VLAN
-* suporte a interfaces bond
-* suporte a modo automático via argumentos
-* criação de logs
-* integração com ferramentas de automação
+* Test in a local environment
+* Validate IP, gateway, and interface before applying
+* Ensure console access to the server
 
 ---
 
-# Licença
+# Future Improvements
 
-Este projeto está licenciado sob a licença **MIT**.
+Possible improvements for the project:
+
+* Multiple IP support
+* VLAN support
+* Bond interface support
+* Automatic mode via CLI arguments
+* Logging system
+* Integration with automation tools
 
 ---
 
-# Author
+# License
 
-**Gustavo Henrique Rodrigues**  
-SysAdmin - NOC Engineer  
-
-[LinkedIn](https://www.linkedin.com/in/gustavo-henrique-rodrigues-3070a5260)
+This project is licensed under the **MIT License**.
