@@ -250,3 +250,10 @@ Possíveis melhorias para o projeto:
 Este projeto está licenciado sob a licença **MIT**.
 
 ---
+
+# Author
+
+**Gustavo Henrique Rodrigues**  
+SysAdmin - NOC Engineer  
+
+[LinkedIn](https://www.linkedin.com/in/gustavo-henrique-rodrigues-3070a5260)
