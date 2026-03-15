@@ -9,7 +9,7 @@ This script simplifies the process of generating the Netplan YAML configuration 
 # Author
 
 **Gustavo Henrique Rodrigues**
-SysAdmin - NOC Engineer
+SysAdmin Engineer
 
 [LinkedIn](https://www.linkedin.com/in/gustavo-henrique-rodrigues-3070a5260)
 
